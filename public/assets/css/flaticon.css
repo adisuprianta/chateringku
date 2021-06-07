@@ -1,0 +1,45 @@
+@font-face {
+    font-family: "flaticon";
+    src: url("./flaticon.ttf?ca85f08a58c2b43d516471ff7659616a") format("truetype"),
+url("./flaticon.woff?ca85f08a58c2b43d516471ff7659616a") format("woff"),
+url("./flaticon.woff2?ca85f08a58c2b43d516471ff7659616a") format("woff2"),
+url("./flaticon.eot?ca85f08a58c2b43d516471ff7659616a#iefix") format("embedded-opentype"),
+url("./flaticon.svg?ca85f08a58c2b43d516471ff7659616a#flaticon") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    font-size: 60px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.flaticon-cake:before {
+    content: "\f101";
+}
+.flaticon-catering:before {
+    content: "\f102";
+}
+.flaticon-delivery:before {
+    content: "\f103";
+}
+.flaticon-fried-rice:before {
+    content: "\f104";
+}
+.flaticon-lunch-box:before {
+    content: "\f105";
+}
+.flaticon-take-away:before {
+    content: "\f106";
+}
+.flaticon-tumpeng:before {
+    content: "\f107";
+}
+.flaticon-wedding-couple:before {
+    content: "\f108";
+}
