@@ -114,14 +114,14 @@
                         <td>{{$p->harga}}</td>
                         <td> <img  src="{{ url('/data_file/produk/'.$p['file']) }}" alt="Card image cap" height="100" ></td>
                         <td>{{$p->kategori}}</td>
-                        <td><center><button type="button" class="btn btn-info" data-toggle="modal" data-target="#ubah_pegawai"><i class='fas fa-pencil-alt'></i>  Ubah</button>
+                        <td><center><button type="button" class="btn btn-info" data-toggle="modal" data-target="#ubah_pegawai{{$p->id_produk}}"><i class='fas fa-pencil-alt'></i>  Ubah</button>
                             <a href="/admin_produk/hapus/{{$p->id_produk}}" class="btn btn-warning"><i class="fas fa-times"></i> Hapus</a>
                         </center></td>
                     </tr>
                 <!-- modal ubah begin -->
                     <form action="/admin_produk/edit"method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
-                    <div class="modal fade" id="ubah_pegawai" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="ubah_pegawai{{$p->id_produk}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                             <div class="modal-header">
