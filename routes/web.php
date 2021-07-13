@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,9 +48,6 @@ Route::post('/admin_produk/tambah', 'App\HTTP\Controllers\AdminController@tambah
 Route::post('/admin_produk/edit', 'App\HTTP\Controllers\AdminController@editproduk')->middleware(['role:admin','auth']);
 Route::get('/admin_produk/hapus/{id}', 'App\HTTP\Controllers\AdminController@hapusproduk')->middleware(['role:admin','auth']);
 
-
-
-
 // pengadaaan
 
 Route::get('/adminpengadaan', 'App\HTTP\Controllers\PengadaanController@view')->middleware(['role:pengadaan','auth']);
@@ -68,3 +68,5 @@ Route::get('/pesanan', function () {
 Route::get('/admin-diproses', function () {
     return view('admin-diproses');
 });
+
+Route::resource('employees', EmployeeController::class);

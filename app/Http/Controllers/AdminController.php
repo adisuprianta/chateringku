@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pegawai;
 use App\Models\produk;
-use File;
 use DB;
+use File;
+
 class AdminController extends Controller
 {
     public function index(){
@@ -46,6 +47,7 @@ class AdminController extends Controller
         $produk = produk::find($request->id);
         
         $file = $request->file('file');
+        
         if($file == null){
             DB::table('produks')->where('id_produk', $request->id)->update([
                 'nama_produk'=>$request->nama,
@@ -80,16 +82,23 @@ class AdminController extends Controller
         return view('admin_pegawai',['pegawai'=>$pegawai]);
     }
     public function tambahpegawai(Request $request){
-        $file = $request->file('file');
-        $nama_file = $request->nama.".".$file->getClientOriginalExtension();
-        $tujuan_upload = 'data_file/pegawai';
-        $file->move($tujuan_upload,$nama_file);
+        // $file = $request->file('file');
+        // $nama_file = $request->nama.".".$file->getClientOriginalExtension();
+        // $tujuan_upload = 'data_file/pegawai';
+        // $file->move($tujuan_upload,$nama_file)
+
+        dd($request->image);
+
+        $imageName = time().'.'.$request->image->extension();  
+        $request->image->move(public_path('images'), $imageName);
+        
         // dd($nama);
         pegawai::insert([
             'nama_pegawai'=>$request->nama,
             'alamat'=>$request->alamat,
-            'foto'=>$nama_file,
-            'no_hp'=>$request->no_hp
+            'foto'=>$imageName,
+            'no_hp'=>$request->no_hp,
+            'salary'=>$request->salary
         ]);
         return redirect()->back();
     }  
