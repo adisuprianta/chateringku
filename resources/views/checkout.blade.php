@@ -15,7 +15,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="breadcrumb__links">
-                        <a href="./index.html">Home</a>
+                        <a href="{{url('/')}}">Home</a>
                         <span>Checkout</span>
                     </div>
                 </div>
@@ -28,7 +28,8 @@
     <section class="checkout spad">
         <div class="container">
             <div class="checkout__form">
-                <form action="/bayar" method="get">
+                <form action="{{url('/checkout')}}" method="post">
+                @csrf
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
                             <h6 class="checkout__title">Informasi Pengiriman</h6>

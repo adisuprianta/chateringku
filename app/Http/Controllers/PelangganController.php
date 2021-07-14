@@ -156,87 +156,100 @@ class PelangganController extends Controller
     public function bayar(Request $request){
         $cek = Pelanggan::where('id_user',Auth::user()->id)->get();
         // echo $request->kodepos;
-        if(count($cek)>0){
-            $pela = Pelanggan::where('id_user',Auth::user()->id)->select('id_pelanggan')->get();
-            $id=0;
-            foreach($pela as $a){
-                $id = $a->id_pelanggan;
-            }
-            // echo "c";
-            Pelanggan::where('id_pelanggan',$id)->update(
+        $cartItems = json_decode($request->cookie('dw-carts'), true);
+        if($cartItems==null){
+            return  redirect('/');
+        }else{    
+            if(count($cek)>0){
+                $pela = Pelanggan::where('id_user',Auth::user()->id)->select('id_pelanggan')->get();
+                $id=0;
+                foreach($pela as $a){
+                    $id = $a->id_pelanggan;
+                }
+                // echo "c";
+                Pelanggan::where('id_pelanggan',$id)->update(
+                        ['nama_pelanggan'=>$request->nama,
+                        'kode_pos'=>$request->kodepos,
+                        'no_hp'=>$request->hp,
+                        'alamat'=>$request->alamat
+                        ]
+                );
+            }else{
+                
+                Pelanggan::insert(
                     ['nama_pelanggan'=>$request->nama,
                     'kode_pos'=>$request->kodepos,
                     'no_hp'=>$request->hp,
-                    'alamat'=>$request->alamat
+                    'alamat'=>$request->alamat,
+                    'id_user'=>Auth::user()->id
                     ]
             );
-        }else{
-            Pelanggan::insert(
-                ['nama_pelanggan'=>$request->nama,
-                'kode_pos'=>$request->kodepos,
-                'no_hp'=>$request->hp,
-                'alamat'=>$request->alamat,
-                'id_user'=>Auth::user()->id
-                ]
-        );
 
 
-        }
-        $pela = Pelanggan::where('id_user',Auth::user()->id)->select('id_pelanggan')->get();
-            // dd($pela);
-            // echo date('Y-m-d');
-            $id=0;
-            foreach($pela as $a){
-                $id = $a->id_pelanggan;
             }
-            // echo "c";
-        $pesan = Pesanan::where('id_pelanggan',$id)->select('id_pesanan')->orderBy('id_pesanan', 'desc')->Limit(1)->get();
-        $id_pesan=0;
-            foreach($pesan as $a){
-                $id_pesan= $a->id_pesanan;
-            }
-        $bank = bank::where('id_bank',$request->bank)->get();
-        
-        //  dd($pesan);
-        if(count($pesan)>0){
             
-            return view('pembayaran',compact('id_pesan','bank'));
-        }else{
-            $cartItems = json_decode($request->cookie('dw-carts'), true);
-            Pesanan::insert([
-                'id_pelanggan'=>$id,
-                'kode_pos'=>$request->kodepos,
-                'alamat'=>$request->alamat,
-                'tanggal_pesanan'=>date('Y-m-d H:i:s'),
-                'status'=>'belum bayar',
-            ]);
-            
+            $pela = Pelanggan::where('id_user',Auth::user()->id)->select('id_pelanggan')->get();
+                // dd($pela);
+                // echo date('Y-m-d');
+                $id=0;
+                foreach($pela as $a){
+                    $id = $a->id_pelanggan;
+                }
+                // echo "c";
             $pesan = Pesanan::where('id_pelanggan',$id)->select('id_pesanan')->orderBy('id_pesanan', 'desc')->Limit(1)->get();
-            // $id_pesan=0;
-            foreach($pesan as $a){
-                $id_pesan= $a->id_pesanan;
-            }
-            foreach($cartItems as $a){
-                pesanan_item::insert([
-                    'id_produk'=>$a['product_id'],
-                    'id_pesanan'=>$id_pesan,
-                    'jumlah'=>$a['qty'],
-                    'harga'=>$a['product_price']
+            $id_pesan=0;
+                foreach($pesan as $a){
+                    $id_pesan= $a->id_pesanan;
+                }
+            $bank = bank::where('id_bank',$request->bank)->get();
+            
+            //  dd($pesan);
+        
+                
+                $cartItems = json_decode($request->cookie('dw-carts'), true);
+                $subtotal = collect($cartItems)->sum(function($q) {
+                    return $q['qty'] * $q['product_price']; //SUBTOTAL TERDIRI DARI QTY * PRICE
+                });
+                // dd($subtotal);
+                Pesanan::insert([
+                    'id_pelanggan'=>$id,
+                    'kode_pos'=>$request->kodepos,
+                    'alamat'=>$request->alamat,
+                    'tanggal_pesanan'=>date('Y-m-d H:i:s'),
+                    'total'=>$subtotal,
+                    'status'=>'belum bayar',
                 ]);
-            }
-    
-    
-            pembayaran::insert([
-                'id_pesanan'=>$id_pesan,
-                'id_bank'=>$request->bank,
-                'status'=>'belum bayar'
-            ]);
-    
-            $cookie = \Cookie::forget('dw-carts');
-            Cookie::queue($cookie);
-            return view('pembayaran',compact('id_pesan','bank'));
-        }
+                
+                $pesan = Pesanan::where('id_pelanggan',$id)->select('id_pesanan')->orderBy('id_pesanan', 'desc')->Limit(1)->get();
+                // $id_pesan=0;
+                foreach($pesan as $a){
+                    $id_pesan= $a->id_pesanan;
+                }
+                foreach($cartItems as $a){
+                    pesanan_item::insert([
+                        'id_produk'=>$a['product_id'],
+                        'id_pesanan'=>$id_pesan,
+                        'jumlah'=>$a['qty'],
+                        'harga'=>$a['product_price']
+                    ]);
+                }
+        
+        
+                pembayaran::insert([
+                    'id_pesanan'=>$id_pesan,
+                    'id_bank'=>$request->bank,
+                    'status'=>'belum bayar'
+                ]);
+        
+                $cookie = \Cookie::forget('dw-carts');
+                Cookie::queue($cookie);
+                return view('pembayaran',compact('id_pesan','bank'));
+        }    
     }
+
+
+
+
     public function pembayaran(Request $request){
         $bank = bank::where('id_bank',$request->bank)->get();
         $id_pesan = $request->id_pesanan;

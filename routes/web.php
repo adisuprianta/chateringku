@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\EmployeeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,7 +29,7 @@ Route::get('/keranjang', 'App\HTTP\Controllers\PelangganController@keranjang')->
 Route::get('/keranjang/delete/{id}', 'App\HTTP\Controllers\PelangganController@delete')->name('delete')->middleware(['auth']);
 Route::get('/keranjang/change/{id}/{nilai}', 'App\HTTP\Controllers\PelangganController@change')->name('change')->middleware(['auth']);
 Route::get('/checkout', 'App\HTTP\Controllers\PelangganController@checkout')->name('checkout')->middleware(['auth']);
-Route::get('/bayar', 'App\HTTP\Controllers\PelangganController@bayar')->name('checkout')->middleware(['auth']);
+Route::post('/checkout', 'App\HTTP\Controllers\PelangganController@bayar')->name('bayar')->middleware(['auth']);
 Route::get('/pembayaran', 'App\HTTP\Controllers\PelangganController@pembayaran')->name('pembayaran')->middleware(['auth']);
 Route::post('/pembayaran/upload', 'App\HTTP\Controllers\PelangganController@upload')->name('upload')->middleware(['auth']);
 Route::get('/profile', 'App\HTTP\Controllers\PelangganController@profile')->name('profile')->middleware(['auth']);
@@ -44,8 +46,8 @@ Route::get('/admin_produk', 'App\HTTP\Controllers\AdminController@produk')->midd
 Route::post('/admin_produk/tambah', 'App\HTTP\Controllers\AdminController@tambahproduk')->middleware(['role:admin','auth']);
 Route::post('/admin_produk/edit', 'App\HTTP\Controllers\AdminController@editproduk')->middleware(['role:admin','auth']);
 Route::get('/admin_produk/hapus/{id}', 'App\HTTP\Controllers\AdminController@hapusproduk')->middleware(['role:admin','auth']);
-
-
+Route::get('/admin_pesanan', 'App\HTTP\Controllers\AdminController@pesanan')->middleware(['role:admin','auth']);
+Route::resource('employees', EmployeeController::class);
 
 
 // pengadaaan

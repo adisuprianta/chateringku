@@ -18,6 +18,7 @@ class CreatePesanansTable extends Migration
             $table->integer('id_pelanggan')->unsigned();
             $table->string('alamat');
             $table->string('kode_pos');
+            $table->integer('total');
             $table->date('tanggal_pesanan');
             $table->date('tanggal_pengiriman')->nullable();
             $table->string('status');

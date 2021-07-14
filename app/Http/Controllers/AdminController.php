@@ -122,4 +122,16 @@ class AdminController extends Controller
         
         // return redirect()->back();
     }  
+    public function pesanan(){
+        $data = DB::table('pelanggans as u')->join('pesanans as p','u.id_pelanggan','=','p.id_pelanggan')
+        ->join('pembayarans as b','p.id_pesanan','=','b.id_pesanan')
+        ->select('u.nama_pelanggan','p.total','p.id_pesanan','p.alamat','b.file_pembayaran','p.kode_pos','p.tanggal_pesanan','p.status')
+        ->get();
+        // foreach($data as $d){
+        //     // echo $d->id_pesanan;
+        //     echo "a";
+        // }
+        // dd("");
+        return view('admin_pesanan',compact('data'));
+    }
 }
