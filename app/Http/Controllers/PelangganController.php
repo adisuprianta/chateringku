@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use DB;
 use File;
+use PhpParser\Node\Stmt\Foreach_;
 
 class PelangganController extends Controller
 {
@@ -283,8 +284,30 @@ class PelangganController extends Controller
 		return  redirect('/');
 		}
     }
-    public function pesanan(){
-        
+    public function profile(){
+        $pelanggan = Pelanggan::where('id_user', Auth::user()->id)->get();
+        $id = 0;
+        foreach($pelanggan as $p){
+            $id = $p->id_pelanggan;
+        }
+        $data = Pesanan::where('id_pelanggan', $id)->get();
+        $id_pesan = 0;
+        foreach($data as $d){
+            $id_pesan =$d->id_pesanan; 
+        }
+        $pesanitem = pesanan_item::where('id_pesanan',$id_pesan)->get();
+        $total=0;
+        foreach($pesanitem as $p){
+            $total = $p->jumlah * $p->harga;
+        }
+
+        return view('profile',compact('data','total'));
+    }
+    public function rincian($id){
+        $data = DB::table('pesanan_items as p')->join('produks as pr','p.id_produk','=','pr.id_produk')
+        ->select('pr.file','pr.kategori','pr.nama_produk','p.harga','p.jumlah')
+        ->where('id_pesanan',$id)->get();
+        return view('rincian_pesanan',compact('data'));
     }
     
 }

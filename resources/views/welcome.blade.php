@@ -4,36 +4,7 @@
 @include('layouts.partial.navbar')
 
    
-    <!-- Hero Section Begin -->
-    <section class="hero">
-        <div class="hero__slider owl-carousel">
-            <div class="hero__item set-bg" data-setbg="img/hero/hero-1.jpg">
-                <div class="container">
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-lg-8">
-                            <div class="hero__text">
-                                <h2>Making your life sweeter one bite at a time!</h2>
-                                <a href="#" class="primary-btn">Our cakes</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero__item set-bg" data-setbg="img/hero/hero-1.jpg">
-                <div class="container">
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-lg-8">
-                            <div class="hero__text">
-                                <h2>Making your life sweeter one bite at a time!</h2>
-                                <a href="#" class="primary-btn">Our cakes</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Hero Section End -->
+    
 
     <!-- About Section Begin -->
     <section class="about spad">
@@ -140,12 +111,10 @@
                 @foreach($produk as $p)
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="{{url('/data_file/produk/'.$p['file'])}}">
-                            <div class="product__label">
-                                <span>{{$p->kategori}}</span>
-                            </div>
-                        </div>
+                        <img src="{{url('/data_file/produk/'.$p['file'])}}" alt="">
+                        
                         <div class="product__item__text">
+                            <h6><a href="#">{{$p->kategori}}</a></h6>
                             <h6><a href="#">{{$p->nama_produk}}</a></h6>
                             <div class="product__item__price">{{$p->harga}}</div>
                             <div class="cart_add">

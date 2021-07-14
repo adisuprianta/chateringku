@@ -30,8 +30,8 @@ Route::get('/checkout', 'App\HTTP\Controllers\PelangganController@checkout')->na
 Route::get('/bayar', 'App\HTTP\Controllers\PelangganController@bayar')->name('checkout')->middleware(['auth']);
 Route::get('/pembayaran', 'App\HTTP\Controllers\PelangganController@pembayaran')->name('pembayaran')->middleware(['auth']);
 Route::post('/pembayaran/upload', 'App\HTTP\Controllers\PelangganController@upload')->name('upload')->middleware(['auth']);
-Route::get('/pesanan', 'App\HTTP\Controllers\PelangganController@pesanan')->name('pesanan')->middleware(['auth']);
-
+Route::get('/profile', 'App\HTTP\Controllers\PelangganController@profile')->name('profile')->middleware(['auth']);
+Route::get('/profile/rincian/{id}', 'App\HTTP\Controllers\PelangganController@rincian')->name('rincian')->middleware(['auth']);
 
 // admin
 
@@ -61,7 +61,7 @@ Route::get('/produk-detail', function () {
     return view('produk-detail');
 });
 Route::get('/pesanan', function () {
-    return view('pesanan');
+    return view('profile');
 });
 
 

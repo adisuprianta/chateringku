@@ -8,7 +8,18 @@
                 <a href="#"><img src="{{asset('assets/img/icon/heart.png')}}" alt=""></a>
             </div>
             <div class="offcanvas__cart__item">
-                <a href="{{route('keranjang')}}"><img src="{{asset('assets/img/icon/cart.png')}}" alt=""> <span>0</span></a>
+                <a href="{{route('keranjang')}}"><img src="{{asset('assets/img/icon/cart.png')}}" alt=""> 
+                <span>
+                @auth
+                @if(json_decode(app('request')->cookie('dw-carts'), true))
+                    {{count(json_decode(app('request')->cookie('dw-carts'), true))}}
+                @else
+                    0
+                @endif
+                @else
+                0   
+                @endauth
+                </span></a>
                 <div class="cart__price">Cart: <span>$0.00</span></div>
             </div>
         </div>
@@ -44,6 +55,12 @@
                                     <!-- dropdown profile -->
                                    
                                     <!-- dropdown Logout -->
+                                    <a class="dropdown-item nav-link" href="{{url('/profile')}}" >
+
+                                                <i class="fa fa-user-circle mr-3 ml-1"></i>Profile
+
+
+                                    </a>
                                     <a class="dropdown-item nav-link" href="{{route('logout')}}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();" >
                                             <i class="fa fa-power-off mr-3 ml-1"></i> Logout
@@ -60,10 +77,11 @@
                             </ul>
                             @else
                                 <ul>
-                                    <li><a href="#">Registrasi</a> <span class="arrow_carrot-down"></span>
-                                        <ul>
-                                            <li> <a class="nav-link login" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                                        </ul>
+                                <li class="nav-item">
+                                    <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                                    <li >
+                                    <a href="{{ route('login') }}">{{ __('Login') }}</a>
                                     </li>
                                 </ul>
                             @endif
@@ -93,7 +111,7 @@
                     <nav class="header__menu mobile-menu">
                         <ul>
                             <li class="active"><a href="./index.html">Home</a></li>
-                            <li><a href="#">Kategori</a>
+                            <!-- <li><a href="#">Kategori</a>
                                 <ul class="dropdown">
                                     <li><a href="./shop-details.html">Shop Details</a></li>
                                     <li><a href="./shoping-cart.html">Shoping Cart</a></li>
@@ -102,11 +120,11 @@
                                     <li><a href="./Class.html">Class</a></li>
                                     <li><a href="./blog-details.html">Blog Details</a></li>
                                 </ul>
-                            </li>
-                            <li><a href="./about.html">Pembayaran</a></li>
-                            <li><a href="./shop.html">Cara Memesan Menu</a></li>
+                            </li> -->
+                            <li><a href="">Pembayaran</a></li>
+                            <li><a href="">Cara Memesan Menu</a></li>
 
-                            <li><a href="./blog.html">Tentang Kami</a></li>
+                            <li><a href="">Tentang Kami</a></li>
                         </ul>
                     </nav>
                 </div>

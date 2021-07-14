@@ -29,7 +29,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="/pengadaan_supplier">
+                    <a href="{{url('/pengadaan_supplier')}}">
                         <i class='fas fa-industry'></i>
                         Supplier
                     </a>
