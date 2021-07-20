@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\SalaryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,3 +71,4 @@ Route::get('/admin-diproses', function () {
 });
 
 Route::resource('employees', EmployeeController::class);
+Route::resource('salaries', SalaryController::class);

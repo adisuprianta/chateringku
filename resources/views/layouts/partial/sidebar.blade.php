@@ -39,6 +39,13 @@
                     <i class="fas fa-users"></i>
                         Pegawai
                     </a>
+                </li>
+                <li>
+                    <a href="{{ url('/salaries') }}">
+                        <i class="fas fa-image"></i>
+                        Penggajian
+                    </a>
+                </li>
                 <li>
                     <a href="#">
                         <i class="fas fa-hand-holding-usd"></i>
