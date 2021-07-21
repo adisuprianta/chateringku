@@ -3,44 +3,51 @@
 
 @include('layouts.partial.navbar')
 
+
+<!-- rincian modal -->
+
+<!-- rincian modal -->
+<!-- rincian bayar -->
+<!-- <br>
         <br>
-        <br>
-        <br>
-        <!-- isi keranjang -->
-    <div class="container" >
-      <div class="card">
-        <div class="card-body">
-              <div class="card text-center">
-                <div class="card-header">
-                  <h4 class="judul">Kode Bank / No Rekening</h4>
-                </div>
-                <div class="card-block">
-                  <br>
-                  @foreach($bank as $b)
-                  <h3 class="card-text">{{$b->nama_bank}}</h3>
-                  <h3 class="card-text">{{$b->no_rekening}}</h3>
-                  @endforeach
-                  <br><br>
-                </div>
-                <div class="card-body">
-                  
-                </div>
-              </div>
-              <br>
-                <form method="post"  action="/pembayaran/upload" enctype="multipart/form-data">
-                @csrf
-                  <input type="hidden"  name="id_pesanan" value="{{$id_pesan}}">
-                  <div class="form-group">
-                  
-                    <label for="exampleFormControlFile1">Bukti Pembayaran</label>
-                    <input type="file" class="form-control-file" name="bukti">
-                  </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-            
+<div class="row">
+       
+            <div class="col col-lg-2">
+                <button type="button" class="btn btn-success" ><i class="fa fa-long-arrow-alt-left"></i>  Back</button>
+            </div>
         </div>
-      </div>
+        <br>
+        <br> -->
+    <div class="card">
+        <div class="card-body">
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Gambar Menu</th>
+                    <th scope="col">Nama Menu</th>
+                    <th scope="col">jumlah</th>
+                    <th scope="col">Harga</th>
+                    <th scope="col">Kategori</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach($data as $d)
+                <tr>
+                    <th scope="row">1</th>
+                    <td><img src="{{url('/data_file/produk/'.$d->file)}}" alt="" height="80"></td>
+                    <td>{{$d->nama_produk}}</td>
+                    <td>{{$d->jumlah}}</td>
+                    <td>{{$d->harga}}</td>
+                    <td>{{$d->kategori}}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+        </div>
     </div>
+
 
     <br><br><br>
     <!-- Footer Section Begin -->
@@ -114,9 +121,4 @@
 @endsection
 @push('scripts')
     @include('layouts.partial.script')
-    <script>
-        if ( window.history.replaceState ) {
-        window.history.replaceState( null, null, window.location.href );
-    }
-    </script>
 @endpush

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pegawai;
+use App\Models\pembayaran;
+use App\Models\Pesanan;
 use App\Models\produk;
 use File;
 use DB;
@@ -122,4 +124,66 @@ class AdminController extends Controller
         
         // return redirect()->back();
     }  
+    public function pesanan(){
+        $data = DB::table('pelanggans as u')->join('pesanans as p','u.id_pelanggan','=','p.id_pelanggan')
+        ->join('pembayarans as b','p.id_pesanan','=','b.id_pesanan')
+        ->select('u.nama_pelanggan','p.total','p.id_pesanan','p.alamat','b.file_pembayaran','p.kode_pos','p.tanggal_pesanan','p.status')
+        ->get();
+        // foreach($data as $d){
+        //     // echo $d->id_pesanan;
+        //     echo "a";
+        // }
+        // dd("");
+        return view('admin_pesanan',compact('data'));
+    }
+    public function rincian($id){
+        $data = DB::table('pesanan_items as p')->join('produks as pr','p.id_produk','=','pr.id_produk')
+        ->select('pr.file','pr.kategori','pr.nama_produk','p.harga','p.jumlah')
+        ->where('id_pesanan',$id)->get();
+        return view('admin_rincian_pesanan',compact('data'));
+    }
+    public function bayar($id){
+        Pesanan::where('id_pesanan', $id)->update([
+            'status'=>"sudah bayar",
+        ]);
+        pembayaran::where('id_pesanan', $id)->update([
+            'status'=>"sudah bayar",
+        ]);
+        return redirect()->back();
+    }
+    public function batal($id){
+        Pesanan::where('id_pesanan', $id)->update([
+            'status'=>"batal",
+        ]);
+        pembayaran::where('id_pesanan', $id)->update([
+            'status'=>"batal",
+        ]);
+        return redirect()->back();
+    }
+    public function diterima(){
+        $data = DB::table('pelanggans as u')->join('pesanans as p','u.id_pelanggan','=','p.id_pelanggan')
+        ->join('pembayarans as b','p.id_pesanan','=','b.id_pesanan')
+        ->select('u.nama_pelanggan','p.total','p.id_pesanan','p.alamat','b.file_pembayaran','p.kode_pos','p.tanggal_pesanan','p.status')
+        ->where('p.status','sudah bayar')
+        ->get();
+        // foreach($data as $d){
+        //     // echo $d->id_pesanan;
+        //     echo "a";
+        // }
+        // dd("");
+        return view('admin_diterima',compact('data'));
+    }
+    public function dibatalkan(){
+        $data = DB::table('pelanggans as u')->join('pesanans as p','u.id_pelanggan','=','p.id_pelanggan')
+        ->join('pembayarans as b','p.id_pesanan','=','b.id_pesanan')
+        ->select('u.nama_pelanggan','p.total','p.id_pesanan','p.alamat','b.file_pembayaran','p.kode_pos','p.tanggal_pesanan','p.status')
+        ->where('p.status','batal')
+        ->get();
+        // foreach($data as $d){
+        //     // echo $d->id_pesanan;
+        //     echo "a";
+        // }
+        // dd("");
+        return view('admin_batal',compact('data'));
+    }
 }

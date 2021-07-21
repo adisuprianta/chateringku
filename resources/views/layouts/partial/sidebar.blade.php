@@ -12,7 +12,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/admin_produk">
+                    <a href="{{url('/admin_produk')}}">
                     <i class='fas fa-boxes'></i>  
                         Menu / Produk
                     </a>
@@ -24,18 +24,18 @@
                     </a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="#">Pesanan Masuk</a>
+                            <a href="{{url('/admin_pesanan')}}">Pesanan Masuk</a>
                         </li>
                         <li>
-                            <a href="#">Pesanan Diproses</a>
+                            <a href="{{url('/admin_diterima')}}">Pesanan Diterima</a>
                         </li>
                         <li>
-                            <a href="#">Pesanan Diterima</a>
+                            <a href="{{url('/admin_batal')}}">Pesanan Batal</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="/admin_pegawai">
+                <a href="{{ url('/employees') }}">
                     <i class="fas fa-users"></i>
                         Pegawai
                     </a>
