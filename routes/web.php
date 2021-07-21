@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\SalaryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +50,7 @@ Route::post('/admin_produk/edit', 'App\HTTP\Controllers\AdminController@editprod
 Route::get('/admin_produk/hapus/{id}', 'App\HTTP\Controllers\AdminController@hapusproduk')->middleware(['role:admin','auth']);
 Route::get('/admin_pesanan', 'App\HTTP\Controllers\AdminController@pesanan')->middleware(['role:admin','auth']);
 Route::resource('employees', EmployeeController::class);
+Route::resource('salaries', SalaryController::class);
 Route::get('/admin/rincian/{id}', 'App\HTTP\Controllers\AdminController@rincian')->middleware(['role:admin','auth']);
 
 Route::get('/admin/bayar/{id}', 'App\HTTP\Controllers\AdminController@bayar')->middleware(['role:admin','auth']);
@@ -76,6 +79,4 @@ Route::get('/pesanan', function () {
 Route::get('/admin-diproses', function () {
     return view('admin-diproses');
 });
-
-
 

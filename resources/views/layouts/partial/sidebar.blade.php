@@ -12,7 +12,11 @@
                     </a>
                 </li>
                 <li>
+<<<<<<< HEAD
                     <a href="{{url('/admin_produk')}}">
+=======
+                    <a href="{{ url('/admin_produk') }}">
+>>>>>>> dimas
                     <i class='fas fa-boxes'></i>  
                         Menu / Produk
                     </a>
@@ -35,10 +39,21 @@
                     </ul>
                 </li>
                 <li>
+<<<<<<< HEAD
                 <a href="{{ url('/employees') }}">
+=======
+                    <a href="{{ url('/employees') }}">
+>>>>>>> dimas
                     <i class="fas fa-users"></i>
                         Pegawai
                     </a>
+                </li>
+                <li>
+                    <a href="{{ url('/salaries') }}">
+                        <i class="fas fa-image"></i>
+                        Penggajian
+                    </a>
+                </li>
                 <li>
                     <a href="#">
                         <i class="fas fa-hand-holding-usd"></i>

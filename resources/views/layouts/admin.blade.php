@@ -21,11 +21,48 @@
 
     <link rel="stylesheet" href="{{asset('assets/css/style_pengadaan.css')}}" type="text/css">
 
-    
-
-
     @stack('style')
 
+    <style>
+
+.dropdown {
+   position: relative;
+   width: 100%;
+  height: 30px;
+}
+.selected {
+  width: 100%;
+  border: 1px solid #eee;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+.options {
+  position: absolute;
+  width: 100%;
+  bottom: -50px;
+  left: 0;
+  display: none;
+  border: 1px solid #eee;
+  border-top: none;
+  list-style: none;
+  margin: 0;
+  padding:0;
+}
+.options.show {
+  display: block;
+}
+
+.options li {
+  background: #eee;
+  cursor: pointer;
+  padding: 3px;
+}
+.options li:hover {
+  background: #ccc;
+}
+.result { margin-top: 20px; }
+
+    </style>
 
 </head>
 
@@ -75,6 +112,22 @@
     <!-- ============================================================== -->
 
     @stack('scripts')
+
+    <script>
+        $('.options li').on('click', function() {
+  $('.selected').html( $(this).text() );
+  $('.selected-inp').val( $(this).data('value') ).trigger('change');
+  $('.options').removeClass('show');
+});
+
+$('.selected').on('click', function() {
+  $('.options').toggleClass('show');
+});
+
+$('.selected-inp').on('change', function(ev) {
+  $('.result').html('The new value is: ' + ev.target.value);
+});
+    </script>
 </body>
 
 </html>
