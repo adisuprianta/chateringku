@@ -7,33 +7,7 @@
 <!-- rincian modal -->
 
 <!-- rincian modal -->
-<!-- rincian bayar -->
-<div class="modal fade" id="bayar" tabindex="-1" role="dialog" aria-labelledby="bayar" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Upload Bukti Pembayaran</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <p>Pesanan akan diterima apabila anda mengupload bukti pembayaran, Apabila sudah upload maka status pesanan akan berubah
-              menjadi lunas.
-          </p>
-        <div class="custom-file">
-            <input type="file" class="custom-file-input" id="inputGroupFile01">
-            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-success">Upload</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- rincian bayar -->
+
 <!-- rincian batal -->
 <div class="modal fade" id="batal" tabindex="-1" role="dialog" aria-labelledby="batal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -146,7 +120,39 @@
                                         </td>
                                         <td><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#bayar">
                                         Bayar Pesanan
-                                    </button></td>
+                                    </button>
+                                    <form method="post"  action="/pembayaran/upload" enctype="multipart/form-data">
+                                            @csrf
+                                            <!-- rincian bayar -->
+                                            <input type="text" name="id_pesanan" hidden value="{{$d->id_pesanan}}">
+                                            <div class="modal fade" id="bayar" tabindex="-1" role="dialog" aria-labelledby="bayar" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Upload Bukti Pembayaran</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Pesanan akan diterima apabila anda mengupload bukti pembayaran, Apabila sudah upload maka status pesanan akan berubah
+                                                        menjadi lunas.
+                                                    </p>
+                                                    <div class="custom-file">
+                                                    <label for="exampleFormControlFile1">Bukti Pembayaran</label>
+                                                    <input type="file" class="form-control-file" name="bukti">
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                                    <button class="btn btn-success">Upload</button>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                    </form>
+                                            <!-- rincian bayar -->
+                                        </td>
                                         
                                         </tr>
                                         

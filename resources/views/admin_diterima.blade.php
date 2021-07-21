@@ -21,14 +21,14 @@
             </div>
         </div>
     </div>
-    <center><h4>Pesanan </h4></center> 
+    <center><h4>Pesanan Diterima</h4></center> 
             <div id="content-wrapper" class="d-flex flex-column">
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Pesanan</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Pesanan Diterima</h6>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -79,16 +79,7 @@
                                         Rincian Menu </a></td>
                                             <td>
                                             <div class="d-flex flex-row">
-                                                @if($p->status == 'sudah bayar' ||$p->status == 'batal'  )
-                                                    <div class="p-1"><button class="btn btn-info " disabled aria-hidden="true" > Sudah Bayar</button></div>
-                                                    
-                                                    <div class="p-1"><button class="btn btn-danger"  aria-hidden="true" disabled> Batal</button></div>
-                                                @else
-                                                <div class="p-1"><a class="btn btn-info "  aria-hidden="true" href="/admin/bayar/{{$p->id_pesanan}}"> Sudah Bayar</a></div>
-                                                    
-                                                    <div class="p-1"><a class="btn btn-danger"  aria-hidden="true" href="/admin/batal/{{$p->id_pesanan}}"> Batal</a></div>
-                                                @endif
-                                                </div> 
+                                                <div class="p-1"><a class="btn btn-success "  aria-hidden="true" href="/admin/proses/{{$p->id_pesanan}}"> Proses</a></div>
                                             </td>
                                         </tr>
                                     @endforeach

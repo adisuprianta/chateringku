@@ -27,10 +27,10 @@
                             <a href="{{url('/admin_pesanan')}}">Pesanan Masuk</a>
                         </li>
                         <li>
-                            <a href="#">Pesanan Diproses</a>
+                            <a href="{{url('/admin_diterima')}}">Pesanan Diterima</a>
                         </li>
                         <li>
-                            <a href="#">Pesanan Diterima</a>
+                            <a href="{{url('/admin_batal')}}">Pesanan Batal</a>
                         </li>
                     </ul>
                 </li>

@@ -48,6 +48,12 @@ Route::post('/admin_produk/edit', 'App\HTTP\Controllers\AdminController@editprod
 Route::get('/admin_produk/hapus/{id}', 'App\HTTP\Controllers\AdminController@hapusproduk')->middleware(['role:admin','auth']);
 Route::get('/admin_pesanan', 'App\HTTP\Controllers\AdminController@pesanan')->middleware(['role:admin','auth']);
 Route::resource('employees', EmployeeController::class);
+Route::get('/admin/rincian/{id}', 'App\HTTP\Controllers\AdminController@rincian')->middleware(['role:admin','auth']);
+
+Route::get('/admin/bayar/{id}', 'App\HTTP\Controllers\AdminController@bayar')->middleware(['role:admin','auth']);
+Route::get('/admin/batal/{id}', 'App\HTTP\Controllers\AdminController@batal')->middleware(['role:admin','auth']);
+Route::get('/admin_diterima', 'App\HTTP\Controllers\AdminController@diterima')->middleware(['role:admin','auth']);
+Route::get('/admin_batal', 'App\HTTP\Controllers\AdminController@dibatalkan')->middleware(['role:admin','auth']);
 
 
 // pengadaaan

@@ -266,8 +266,8 @@ class PelangganController extends Controller
 		}
         $file = $request->file('bukti');
 		if(is_null($file)){
-            echo"a";
-			// return  redirect('/pesanan');
+            // echo"a";
+			return  redirect('/profile');
 		}else{
 
 		// dd("a");
@@ -294,7 +294,7 @@ class PelangganController extends Controller
 			]);
 			
 		}
-		return  redirect('/');
+		return  redirect('/profile');
 		}
     }
     public function profile(){
