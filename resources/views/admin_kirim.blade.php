@@ -21,14 +21,14 @@
             </div>
         </div>
     </div>
-    <center><h4>Pesanan Diterima</h4></center> 
+    <center><h4>Pesanan </h4></center> 
             <div id="content-wrapper" class="d-flex flex-column">
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Pesanan Diterima</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Pesanan</h6>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -78,8 +78,43 @@
                                             <td><a href="{{url('/admin/rincian').'/'.$p->id_pesanan}}" class="btn btn-info" >
                                         Rincian Menu </a></td>
                                             <td>
-                                            <div class="d-flex flex-row">
-                                                <div class="p-1"><a class="btn btn-success "  aria-hidden="true" href="/admin/proses/{{$p->id_pesanan}}"> Proses</a></div>
+                                            <button type="button" class="btn btn-success active" data-toggle="modal" data-target="#add_pegawai"> Kirim</button>
+                                                <!-- modal add_produk begin -->
+                                                <form action="{{url('/admin_kirim')}}" method="post">
+                                                {{ csrf_field() }}
+                                                <div class="modal fade" id="add_pegawai" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg" role="document">
+                                                        <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Kirim Barang</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <input type="text" hidden name="id_pesanan" value="{{$p->id_pesanan}}">
+                                                        <div class="modal-body">
+                                                            <div class="container-fluid">
+                                                                <div class="row">
+                                                                    <div class="col-3">Tanggal Pengiriman</div>
+                                                                    <div class="col-md-9">
+                                                                        <input type="date" class="form-control" name="date" id="formGroupExampleInput" placeholder="Tanggal kirim">
+                                                                    </div>
+                                                                </div>
+                                                                <br>
+                                                                
+                                                                
+                                                                
+                                                            
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i>  Batal</button>
+                                                            <button  class="btn btn-primary "><i class="fas fa-save"></i> Simpan</button>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

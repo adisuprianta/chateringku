@@ -49,14 +49,15 @@ Route::post('/admin_produk/tambah', 'App\HTTP\Controllers\AdminController@tambah
 Route::post('/admin_produk/edit', 'App\HTTP\Controllers\AdminController@editproduk')->middleware(['role:admin','auth']);
 Route::get('/admin_produk/hapus/{id}', 'App\HTTP\Controllers\AdminController@hapusproduk')->middleware(['role:admin','auth']);
 Route::get('/admin_pesanan', 'App\HTTP\Controllers\AdminController@pesanan')->middleware(['role:admin','auth']);
-Route::resource('employees', EmployeeController::class);
-Route::resource('salaries', SalaryController::class);
+Route::resource('employees', EmployeeController::class)->middleware(['role:admin','auth']);
+Route::resource('salaries', SalaryController::class)->middleware(['role:admin','auth']);
 Route::get('/admin/rincian/{id}', 'App\HTTP\Controllers\AdminController@rincian')->middleware(['role:admin','auth']);
 
 Route::get('/admin/bayar/{id}', 'App\HTTP\Controllers\AdminController@bayar')->middleware(['role:admin','auth']);
 Route::get('/admin/batal/{id}', 'App\HTTP\Controllers\AdminController@batal')->middleware(['role:admin','auth']);
-Route::get('/admin_diterima', 'App\HTTP\Controllers\AdminController@diterima')->middleware(['role:admin','auth']);
 Route::get('/admin_batal', 'App\HTTP\Controllers\AdminController@dibatalkan')->middleware(['role:admin','auth']);
+Route::get('/admin_kirim', 'App\HTTP\Controllers\AdminController@kirim')->middleware(['role:admin','auth']);
+Route::post('/admin_kirim', 'App\HTTP\Controllers\AdminController@dikirim')->middleware(['role:admin','auth']);
 
 
 // pengadaaan
@@ -66,6 +67,9 @@ Route::get('/pengadaan_supplier', 'App\HTTP\Controllers\PengadaanController@supl
 Route::post('/pengadaan_supplier/tambah', 'App\HTTP\Controllers\PengadaanController@tambahsuplier')->middleware(['role:pengadaan','auth']);
 Route::post('/pengadaan_supplier/edit', 'App\HTTP\Controllers\PengadaanController@editsuplier')->middleware(['role:pengadaan','auth']);
 Route::get('/pengadaan_supplier/hapus/{id}', 'App\HTTP\Controllers\PengadaanController@hapussuplier')->middleware(['role:pengadaan','auth']);
+Route::get('/pengadaan/rincian/{id}', 'App\HTTP\Controllers\PengadaanController@rincian')->middleware(['role:pengadaan','auth']);
+Route::get('/pengadaaan_diterima', 'App\HTTP\Controllers\PengadaanController@diterima')->middleware(['role:pengadaan','auth']);
+Route::post('/pengadaan/bahan_baku', 'App\HTTP\Controllers\PengadaanController@bahan_baku')->middleware(['role:pengadaan','auth']);
 
 
 Route::get('/produk-detail', function () {

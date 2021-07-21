@@ -12,11 +12,7 @@
                     </a>
                 </li>
                 <li>
-<<<<<<< HEAD
                     <a href="{{url('/admin_produk')}}">
-=======
-                    <a href="{{ url('/admin_produk') }}">
->>>>>>> dimas
                     <i class='fas fa-boxes'></i>  
                         Menu / Produk
                     </a>
@@ -31,19 +27,16 @@
                             <a href="{{url('/admin_pesanan')}}">Pesanan Masuk</a>
                         </li>
                         <li>
-                            <a href="{{url('/admin_diterima')}}">Pesanan Diterima</a>
+                            <a href="{{url('/admin_kirim')}}">Pesanan Dikirim</a>
                         </li>
                         <li>
                             <a href="{{url('/admin_batal')}}">Pesanan Batal</a>
                         </li>
+                        
                     </ul>
                 </li>
                 <li>
-<<<<<<< HEAD
                 <a href="{{ url('/employees') }}">
-=======
-                    <a href="{{ url('/employees') }}">
->>>>>>> dimas
                     <i class="fas fa-users"></i>
                         Pegawai
                     </a>
@@ -55,10 +48,10 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <!-- <a href="#">
                         <i class="fas fa-hand-holding-usd"></i>
                         Keuangan
-                    </a>
+                    </a> -->
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-book"></i>
                         Laporan
@@ -67,32 +60,11 @@
                         <li>
                             <a href="#">Laporan 1</a>
                         </li>
-                        <li>
-                            <a href="#">Laporan 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Laporan 3</a>
+                       
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-image"></i>
-                        Portfolio
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-question"></i>
-                        FAQ
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-paper-plane"></i>
-                        Contact
-                    </a>
-                </li>
+                
             </ul>
 
             <ul class="list-unstyled CTAs">

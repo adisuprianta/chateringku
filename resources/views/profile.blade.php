@@ -142,6 +142,13 @@
                                                     <label for="exampleFormControlFile1">Bukti Pembayaran</label>
                                                     <input type="file" class="form-control-file" name="bukti">
                                                     </div>
+                                                    <select class="form-control" id="exampleFormControlSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>

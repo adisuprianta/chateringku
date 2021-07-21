@@ -169,19 +169,7 @@ class AdminController extends Controller
         ]);
         return redirect()->back();
     }
-    public function diterima(){
-        $data = DB::table('pelanggans as u')->join('pesanans as p','u.id_pelanggan','=','p.id_pelanggan')
-        ->join('pembayarans as b','p.id_pesanan','=','b.id_pesanan')
-        ->select('u.nama_pelanggan','p.total','p.id_pesanan','p.alamat','b.file_pembayaran','p.kode_pos','p.tanggal_pesanan','p.status')
-        ->where('p.status','sudah bayar')
-        ->get();
-        // foreach($data as $d){
-        //     // echo $d->id_pesanan;
-        //     echo "a";
-        // }
-        // dd("");
-        return view('admin_diterima',compact('data'));
-    }
+    
     public function dibatalkan(){
         $data = DB::table('pelanggans as u')->join('pesanans as p','u.id_pelanggan','=','p.id_pelanggan')
         ->join('pembayarans as b','p.id_pesanan','=','b.id_pesanan')
@@ -194,5 +182,25 @@ class AdminController extends Controller
         // }
         // dd("");
         return view('admin_batal',compact('data'));
+    }
+
+    public function kirim(){
+        $data = DB::table('pelanggans as u')->join('pesanans as p','u.id_pelanggan','=','p.id_pelanggan')
+        ->join('pembayarans as b','p.id_pesanan','=','b.id_pesanan')
+        ->select('u.nama_pelanggan','p.total','p.id_pesanan','p.alamat','b.file_pembayaran','p.kode_pos','p.tanggal_pesanan','p.status')
+        ->where('p.status','sudah bayar')
+        ->get();
+        // foreach($data as $d){
+        //     // echo $d->id_pesanan;
+        //     echo "a";
+        // }
+        // dd("");
+        return view('admin_kirim',compact('data'));
+    }
+    public function dikirim(Request $request){
+        Pesanan::where('id_pesanan',$request->id_pesanan)->update([
+            'tanggal_pengiriman'=>$request->date
+        ]);
+        return redirect()->back();
     }
 }

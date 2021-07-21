@@ -16,11 +16,16 @@
     
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 
+
+
+
     <link rel="stylesheet" href="{{asset('assets/bootstrap/css/bootstrap.min.css')}}">
-
-
     <link rel="stylesheet" href="{{asset('assets/css/style_pengadaan.css')}}" type="text/css">
 
+
+
+
+    <link rel="stylesheet" href="{{asset('assets/css/nice-select.css')}}" type="text/css">
     @stack('style')
 
     <style>

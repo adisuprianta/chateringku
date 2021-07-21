@@ -18,14 +18,10 @@
                     </a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="#">Pesanan Diterima</a>
+                            <a href="{{url('/pengadaaan_diterima')}}">Pesanan Diterima</a>
                         </li>
-                        <li>
-                            <a href="#">Daftar Pesanan Bahan Baku</a>
-                        </li>
-                        <li>
-                            <a href="#">Daftar Bahan Baku Diterima</a>
-                        </li>
+
+                        
                     </ul>
                 </li>
                 <li>
@@ -34,41 +30,7 @@
                         Supplier
                     </a>
                 </li>
-                <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-book"></i>
-                        Laporan
-                    </a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li>
-                            <a href="#">Laporan 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Laporan 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Laporan 3</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-image"></i>
-                        Portfolio
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-question"></i>
-                        FAQ
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-paper-plane"></i>
-                        Contact
-                    </a>
-                </li>
+                
             </ul>
 
             <ul class="list-unstyled CTAs">
